@@ -87,3 +87,8 @@ def delete_request(request_id: int) -> JSONResponse:
     if not repository.delete(request_id):
         raise HTTPException(status_code=404, detail="Request not found")
     return JSONResponse(status_code=204, content=None)
+
+
+@app.get("/health", tags=["System"], summary="Health check")
+def health() -> dict:
+    return {"status": "ok"}
